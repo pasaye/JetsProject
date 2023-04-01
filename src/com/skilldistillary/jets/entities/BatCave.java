@@ -6,23 +6,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AirField {
-	private List<Jet> fleet = new ArrayList<>();
+public class BatCave {
+	private List<Bats> colony = new ArrayList<>();
 	
-	public AirField() {
-		//populate fleet from file.
+	
+	public BatCave() {
+	// population bats from file		
+		
 	}
 	
 	
-	public List<Jet> readFromFile(String fn) {
-		List<Jet> jets = new ArrayList<>();
+	public List<Bats> readFromFile(String fn) {
+		List<Bats> bats = new ArrayList<>();
 		
 		//read in the various jet from file
 		try ( BufferedReader bufIn = new BufferedReader(new FileReader(fn)) ) {
-			  String ajet;
-			  while ((ajet = bufIn.readLine()) != null) {
+			  String aBat;
+			  while ((aBat = bufIn.readLine()) != null) {
 				  //as you read in a create new up  a jet
-				String[] jetDetails = ajet.split(",");
+				String[] batDetails = aBat.split(",");
+				System.out.println(aBat);
 				//create the jet based on jet details
 				//if the jetdetails[0] happens to be a dcv then creat a dvcjet.
 				//else the jetdetails[0] happens to be a fighterthen creat a figther.
@@ -38,7 +41,7 @@ public class AirField {
 			}
 		//and add that jet type to jet list
 		
-		return jets;
+		return bats;
 		
 	}
 
