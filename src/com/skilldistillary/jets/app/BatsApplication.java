@@ -58,7 +58,8 @@ public class BatsApplication {
 				fastBat(batInfo);
 				break;
 			case 4:
-				System.out.println("Wonder which bat can fly the furthest?");
+				System.out.println("Lets see who has the most stamina?");
+				batFurthestFlight(batInfo);
 				break;
 			case 5:
 				System.out.println("Feed the fruit bat.");
@@ -119,6 +120,16 @@ public class BatsApplication {
 		}
            System.out.println("And the winner is: " + max.getBreed() + " at " + max.getFlightSpeed() + "Mph");
 
+	}
+	
+	private void batFurthestFlight(List<Bat> batInfo) {
+		Bat max = batInfo.get(0);
+		for (Bat b: batInfo) {
+			if(b.getRange() > max.getRange()) {
+				max = b;
+			}
+		}
+		System.out.println("And the bat with most stamina is: " + max.getBreed()+ " with " + max.getRange() + " miles in a single trip.");
 	}
 
 }
