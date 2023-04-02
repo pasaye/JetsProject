@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.skilldistillary.jets.entities.BatCave;
+import com.skilldistillary.jets.entities.FruitBat;
+import com.skilldistillary.jets.entities.HoaryBat;
 import com.skilldistillary.jets.entities.Bat;
 
 public class BatsApplication {
@@ -62,10 +64,12 @@ public class BatsApplication {
 				batFurthestFlight(batInfo);
 				break;
 			case 5:
-				System.out.println("Feed the fruit bat.");
+				System.out.println("Lets see if Marie needs more fruit");
+				howIsMarie(batInfo);
 				break;
 			case 6:
-				System.out.println("Pet the Hoary bat.");
+				System.out.println("Let's take a closer look at Harry's new haircut.");
+				howIsHarry(batInfo);
 				break;
 			case 7:
 				System.out.println("Add a bat to our bat cave.");
@@ -114,22 +118,41 @@ public class BatsApplication {
 	private void fastBat(List<Bat> batInfo) {
 		Bat max = batInfo.get(0);
 		for (Bat b : batInfo) {
-			if(b.getFlightSpeed() > max.getFlightSpeed()) {
+			if (b.getFlightSpeed() > max.getFlightSpeed()) {
 				max = b;
 			}
 		}
-           System.out.println("And the winner is: " + max.getBreed() + " at " + max.getFlightSpeed() + "Mph");
+		System.out.println("And the winner is: " + max.getBreed() + " at " + max.getFlightSpeed() + "Mph");
 
 	}
-	
+
 	private void batFurthestFlight(List<Bat> batInfo) {
 		Bat max = batInfo.get(0);
-		for (Bat b: batInfo) {
-			if(b.getRange() > max.getRange()) {
+		for (Bat b : batInfo) {
+			if (b.getRange() > max.getRange()) {
 				max = b;
 			}
 		}
-		System.out.println("And the bat with most stamina is: " + max.getBreed()+ " with " + max.getRange() + " miles in a single trip.");
+		System.out.println("And the bat with most stamina is: " + max.getBreed() + " with " + max.getRange()
+				+ " miles in a single trip.");
 	}
 
+	private void howIsHarry(List<Bat> batInfo) {
+		for (Bat harry : batInfo) {
+			if (harry instanceof HoaryBat) {
+				((HoaryBat)harry).trimHair();
+			}
+		}
+
+	}
+
+	private void howIsMarie(List<Bat> batInfo) {
+		for (Bat marie : batInfo) {
+			if (marie instanceof FruitBat) {
+				((FruitBat)marie).spitSeeds();
+			}
+		}
+	}
+
+	
 }

@@ -11,7 +11,7 @@ public class MarianaFruitBat extends Bat implements FruitBat {
 	
 	@Override
 	public void spitSeeds() {
-		System.out.println("Marie mariana is happily enjoying her fruit and it looks like shes filling up more spittoons");
+		System.out.println("Marie Mariana is happily enjoying her fruit and it looks like shes filling up more spittoons");
 	}
 
 	

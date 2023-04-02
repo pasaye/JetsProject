@@ -21,8 +21,6 @@ public abstract class Bat {
 	}
 
 	public  void batActivities() {} 
-	public void spitSeeds() {}
-	public void trimHair() {}
 
 	public String getBreed() {
 		return breed;
