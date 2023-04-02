@@ -22,7 +22,7 @@ public class HBat extends Bat implements HoaryBat {
 
 	@Override
 	public String toString() {
-		return "This is Hairy Harry he is a " + getBreed() + ", He can fly up to" + getFlightSpeed() + " MPH" + "He can fly as far as "
+		return "This is Hairy Harry he is a " + getBreed() + ", He can fly up to " + getFlightSpeed() + " MPH" + "He can fly as far as "
 				+ getRange() + " Miles " +",and he can live for" + getLifeSpan() + " years.\n";
 	}
 

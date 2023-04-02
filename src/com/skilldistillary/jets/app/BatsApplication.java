@@ -1,11 +1,15 @@
 package com.skilldistillary.jets.app;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 import com.skilldistillary.jets.entities.BatCave;
 import com.skilldistillary.jets.entities.FruitBat;
+import com.skilldistillary.jets.entities.HBat;
 import com.skilldistillary.jets.entities.HoaryBat;
+import com.skilldistillary.jets.entities.MarianaFruitBat;
+import com.skilldistillary.jets.entities.regularBat;
 import com.skilldistillary.jets.entities.Bat;
 
 public class BatsApplication {
@@ -24,21 +28,6 @@ public class BatsApplication {
 		String fn = "Bats.txt";
 		List<Bat> batInfo = bc.readFromFile(fn);
 		bc.setColony(batInfo);
-
-//		System.out.println("Please enter class of bat(Fruit, Hoary, Bat");
-//		String typeOfBat = kb.nextLine();
-//		
-//		System.out.println("Please enter breed of bat to add to bat cave");
-//		String batBreed = kb.nextLine();
-//		
-//		System.out.println("How fast can this bat fly?");
-//		double batSpeed = kb.nextDouble();
-//		
-//		System.out.println("How far can your bat fly");
-//		double batFlyingRange = kb.nextDouble();
-//		
-//		System.out.println("How long doe this litte critter live?");
-//		double batLifeSpan = kb.nextDouble();
 
 		int userSelection = 0;
 		loop: while (userSelection != 9) {
@@ -73,9 +62,11 @@ public class BatsApplication {
 				break;
 			case 7:
 				System.out.println("Add a bat to our bat cave.");
+				addBat(kb, batInfo);
 				break;
 			case 8:
 				System.out.println("Take a bat home with you");
+				removeBat(kb, batInfo);
 				break;
 			case 9:
 				System.out.println("GoodBye");
@@ -102,8 +93,8 @@ public class BatsApplication {
 		System.out.println("| 4. Which bat can fly the furthest.  |");
 		System.out.println("| 5. Lets check on the fruit bat.     |");
 		System.out.println("| 6. What the Harry up to?            |");
-		System.out.println("| 7. Add a bat to the bat cave.       |");
-		System.out.println("| 8. Take a bat out of the bat cave.  |");
+		System.out.println("| 7. Want to add to our bat cave?     |");
+		System.out.println("| 8. Need to take your bat back home? |");
 		System.out.println("| 9. Quit.                            |");
 		System.out.println("|                                     |");
 		System.out.println("=======================================");
@@ -140,7 +131,7 @@ public class BatsApplication {
 	private void howIsHarry(List<Bat> batInfo) {
 		for (Bat harry : batInfo) {
 			if (harry instanceof HoaryBat) {
-				((HoaryBat)harry).trimHair();
+				((HoaryBat) harry).trimHair();
 			}
 		}
 
@@ -149,10 +140,58 @@ public class BatsApplication {
 	private void howIsMarie(List<Bat> batInfo) {
 		for (Bat marie : batInfo) {
 			if (marie instanceof FruitBat) {
-				((FruitBat)marie).spitSeeds();
+				((FruitBat) marie).spitSeeds();
 			}
 		}
 	}
 
-	
+	public void addBat(Scanner kb, List<Bat> batInfo) {
+		String breed = "";
+		double flightSpeed = 0.0;
+		double range = 0.0;
+		double lifeSpan = 0.0;
+
+		Bat b;
+
+		System.out.println("Please enter type of bat by type: Fruit, Hoary, or Bat");
+		String typeOfBat = kb.nextLine();
+		kb.nextLine();
+
+		System.out.println("Please enter breed of bat to add to bat cave");
+		breed = kb.nextLine();
+
+		System.out.println("How fast can this bat fly?");
+		flightSpeed = kb.nextDouble();
+
+		System.out.println("How far can your bat fly");
+		range = kb.nextDouble();
+
+		System.out.println("How long doe this litte critter live?");
+		lifeSpan = kb.nextDouble();
+
+		if (typeOfBat.equalsIgnoreCase("Fruit")) {
+			b = new MarianaFruitBat(breed, flightSpeed, range, lifeSpan);
+		} else if (typeOfBat.equalsIgnoreCase("Hoary")) {
+			b = new HBat(breed, flightSpeed, range, lifeSpan);
+		} else {
+			b = new regularBat(breed, flightSpeed, range, lifeSpan);
+		}
+		batInfo.add(b);
+
+	}
+
+	public void removeBat(Scanner kb, List<Bat> batInfo) {
+
+		try {
+			System.out.println("Please select which bat you're taking home by select a number between 0 and " + (batInfo.size()-1));
+			int byeByeBat = kb.nextInt();
+			if (byeByeBat <= batInfo.size()) {
+				batInfo.remove(byeByeBat);
+			}
+
+		} catch (InputMismatchException e) {
+			System.out.println("Invaild input. Please enter numerical value onle.");
+		}
+
+	}
 }
