@@ -7,42 +7,68 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BatCave {
-	private List<Bats> colony = new ArrayList<>();
-	
-	
+	private List<Bat> colony; 
+
 	public BatCave() {
-	// population bats from file		
-		
+		// population bats from file
+		colony = new ArrayList<>();
+
 	}
-	
-	
-	public List<Bats> readFromFile(String fn) {
-		List<Bats> bats = new ArrayList<>();
+
+	public List<Bat> readFromFile(String fn) {
+		List<Bat> batsInfo = new ArrayList<>();
 		
-		//read in the various jet from file
+		
 		try ( BufferedReader bufIn = new BufferedReader(new FileReader(fn)) ) {
-			  String aBat;
-			  while ((aBat = bufIn.readLine()) != null) {
-				  //as you read in a create new up  a jet
-				String[] batDetails = aBat.split(",");
-				System.out.println(aBat);
-				//create the jet based on jet details
-				//if the jetdetails[0] happens to be a dcv then creat a dvcjet.
-				//else the jetdetails[0] happens to be a fighterthen creat a figther.
+			  String batLine;
+			  while ((batLine = bufIn.readLine()) != null) {
+				String[] batDetails = batLine.split(",");
 				
+				String typeOfBat = batDetails[0];
+				String breed = batDetails[1];
+				double flightSpeed = Double.parseDouble(batDetails[2]);
+				double range = Integer.parseInt(batDetails[3]);
+				double lifeSpan = Long.parseLong(batDetails[4]);
 				
-				//and add that jet to my jets
+				Bat b;
 				
-			    
+				if(typeOfBat.equals("Fruit")) {
+					b = new MarianaFruitBat(breed, flightSpeed, range, lifeSpan);
+					
+				}else if(typeOfBat.equals("Hoary")) {
+					b = new HBat(breed, flightSpeed, range,lifeSpan);
+					
+				}else {
+					b = new regularBat(breed, flightSpeed, range, lifeSpan);
+				}
+				
+				batsInfo.add(b);	 	
 			  }
 			}
 			catch (IOException e) {
 			  System.err.println(e);
 			}
 		//and add that jet type to jet list
-		
-		return bats;
+		return batsInfo;
 		
 	}
+
+	public List<Bat> getColony() {
+		return colony;
+	}
+
+	public void setColony(List<Bat> colony) {
+		this.colony = colony;
+	}
+
+	
+	
+	@Override
+	public String toString() {
+		
+		return "The bat in the BatCave are " + colony +"\n";
+	}
+	
+	
 
 }

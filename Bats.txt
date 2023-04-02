@@ -1,5 +1,5 @@
-Mariana fruit bat,120 mph,200 miles,Five years,
-California leaf-nosed bat,165 mph,500 miles,20-30 years,
-Mexican free-tailed bat,60 mph,100 miles,18 years,
-Little brown bat,21 mph,75 miles,30 years,
-Hoary bat,25 mph,80 miles,7 years,
+Fruit,Mariana fruit bat,120,200,5
+Bat,California leaf-nosed bat,165,500,30
+Bat,Mexican free-tailed bat,60,100,18
+Bat,Little brown bat,21,75,30
+Hoary,Hairy Hoary bat,25,80,7
