@@ -18,7 +18,7 @@ public class regularBat extends Bat {
 
 	@Override
 	public void batActivities() {
-		System.out.println("The " + getBreed() + " is a boring old bat who most of the time sleeping");
+		System.out.println("The " + getBreed() + " is a boring old bat who spends most of the time sleeping");
 		
 	}
 

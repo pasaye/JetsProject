@@ -66,7 +66,7 @@ public class BatCave {
 	@Override
 	public String toString() {
 		
-		return "The bat in the BatCave are " + colony +"\n";
+		return "The bats in the BatCave are " + colony +"\n";
 	}
 	
 	

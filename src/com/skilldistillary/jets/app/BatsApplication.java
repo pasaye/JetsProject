@@ -41,11 +41,11 @@ public class BatsApplication {
 				System.out.println(bc);
 				break;
 			case 2:
-				System.out.println("Lets check up on our bat friends and she what eveyone is up to.");
+				System.out.println("Lets check up on our bat friends and see what eveyone is up to.");
 				batActivities(batInfo);
 				break;
 			case 3:
-				System.out.println("Lets race the bat and see whose fastest!");
+				System.out.println("Lets race the bats and see whose fastest!");
 				fastBat(batInfo);
 				break;
 			case 4:
@@ -81,7 +81,7 @@ public class BatsApplication {
 	}
 
 	private void welcomeMessage() {
-		System.out.println("welcome to the bat cave are you were to learn?");
+		System.out.println("welcome to the bat cave let me introduce you to some of our residents.");
 	}
 
 	private void optionMenu() {
@@ -113,7 +113,7 @@ public class BatsApplication {
 				max = b;
 			}
 		}
-		System.out.println("And the winner is: " + max.getBreed() + " at " + max.getFlightSpeed() + "Mph");
+		System.out.println("And the winner is: " + max.getBreed() + " at " + max.getFlightSpeed() + " Mph");
 
 	}
 
@@ -124,7 +124,7 @@ public class BatsApplication {
 				max = b;
 			}
 		}
-		System.out.println("And the bat with most stamina is: " + max.getBreed() + " with " + max.getRange()
+		System.out.println("And the bat with most stamina is: " + max.getBreed() + " flying " + max.getRange()
 				+ " miles in a single trip.");
 	}
 
@@ -146,28 +146,48 @@ public class BatsApplication {
 	}
 
 	public void addBat(Scanner kb, List<Bat> batInfo) {
+		String typeOfBat = "";
 		String breed = "";
 		double flightSpeed = 0.0;
 		double range = 0.0;
 		double lifeSpan = 0.0;
 
 		Bat b;
+		try {
+			System.out.println("Please enter type of bat by typing: Fruit, Hoary, or Bat");
+			typeOfBat = kb.nextLine();
+			kb.nextLine();
+		} catch (InputMismatchException e) {
+			System.out.println("Enter one of the three words.");
+		}
 
-		System.out.println("Please enter type of bat by type: Fruit, Hoary, or Bat");
-		String typeOfBat = kb.nextLine();
-		kb.nextLine();
+		try {
+			System.out.println("Please enter breed of bat to add to bat cave");
+			breed = kb.nextLine();
+		} catch (InputMismatchException e) {
+			System.out.println("Enter a numerical value only.");
+		}
 
-		System.out.println("Please enter breed of bat to add to bat cave");
-		breed = kb.nextLine();
+		try {
+			System.out.println("How fast can this bat fly?");
+			flightSpeed = kb.nextDouble();
+		} catch (InputMismatchException e) {
+			System.out.println("Enter a numerical value only.");
+		}
 
-		System.out.println("How fast can this bat fly?");
-		flightSpeed = kb.nextDouble();
+		try {
+			System.out.println("How far can your bat fly");
+			range = kb.nextDouble();
+		} catch (InputMismatchException e) {
+			System.out.println("Enter a numerical value only.");
+		}
 
-		System.out.println("How far can your bat fly");
-		range = kb.nextDouble();
-
-		System.out.println("How long doe this litte critter live?");
-		lifeSpan = kb.nextDouble();
+		try {
+			System.out.println("How long doe this litte critter live?");
+			lifeSpan = kb.nextDouble();
+		} catch (InputMismatchException e) {
+			System.out.println("Enter a numerical value only.");
+		}
 
 		if (typeOfBat.equalsIgnoreCase("Fruit")) {
 			b = new MarianaFruitBat(breed, flightSpeed, range, lifeSpan);
@@ -183,7 +203,8 @@ public class BatsApplication {
 	public void removeBat(Scanner kb, List<Bat> batInfo) {
 
 		try {
-			System.out.println("Please select which bat you're taking home by select a number between 0 and " + (batInfo.size()-1));
+			System.out.println("Please select which bat you're taking home by select a number between 0 and "
+					+ (batInfo.size() - 1));
 			int byeByeBat = kb.nextInt();
 			if (byeByeBat <= batInfo.size()) {
 				batInfo.remove(byeByeBat);
