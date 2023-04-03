@@ -25,7 +25,7 @@ public class MarianaFruitBat extends Bat implements FruitBat {
 
 	@Override
 	public String toString() {
-		return  getBreed() + ", who flys up to " + getFlightSpeed() + " MPH" + ", can travel up to "
+		return  " Here we have one of our Fruit bats "+getBreed() + ", who flys up to " + getFlightSpeed() + " MPH" + ", can travel up to "
 				+ getRange() + " miles in one flight " + ", lives for " + getLifeSpan() + " years\n";
 	}
 

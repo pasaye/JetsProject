@@ -14,14 +14,14 @@ import com.skilldistillary.jets.entities.Bat;
 
 public class BatsApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 		BatsApplication bc = new BatsApplication();
 		bc.welcomeMessage();
 		bc.run();
 
 	}
 
-	public void run() {
+	public void run()  {
 		Scanner kb = new Scanner(System.in);
 
 		BatCave bc = new BatCave();
@@ -77,7 +77,7 @@ public class BatsApplication {
 			}
 
 		}
-
+		kb.close();
 	}
 
 	private void welcomeMessage() {
@@ -146,7 +146,7 @@ public class BatsApplication {
 	}
 
 	public void addBat(Scanner kb, List<Bat> batInfo) {
-		String typeOfBat = "";
+		int choice = 0;
 		String breed = "";
 		double flightSpeed = 0.0;
 		double range = 0.0;
@@ -154,50 +154,46 @@ public class BatsApplication {
 
 		Bat b;
 		try {
-			System.out.println("Please enter type of bat by typing: Fruit, Hoary, or Bat");
-			typeOfBat = kb.nextLine();
+			System.out.println("Please enter type of bat by typing \n"+ "1: Fruit\n" + "2: Hoary\n" + "3: Bat");
+			choice = kb.nextInt();
 			kb.nextLine();
-		} catch (InputMismatchException e) {
-			System.out.println("Enter one of the three words.");
-		}
-
-		try {
+		
 			System.out.println("Please enter breed of bat to add to bat cave");
 			breed = kb.nextLine();
-		} catch (InputMismatchException e) {
-			System.out.println("Enter a numerical value only.");
-		}
-
-		try {
+		
 			System.out.println("How fast can this bat fly?");
 			flightSpeed = kb.nextDouble();
-		} catch (InputMismatchException e) {
-			System.out.println("Enter a numerical value only.");
-		}
-
-		try {
+		
 			System.out.println("How far can your bat fly");
 			range = kb.nextDouble();
-		} catch (InputMismatchException e) {
-			System.out.println("Enter a numerical value only.");
-		}
-
-		try {
+		
 			System.out.println("How long doe this litte critter live?");
 			lifeSpan = kb.nextDouble();
-		} catch (InputMismatchException e) {
-			System.out.println("Enter a numerical value only.");
-		}
-
-		if (typeOfBat.equalsIgnoreCase("Fruit")) {
+		
+		
+		switch(choice) {
+		case 1:
 			b = new MarianaFruitBat(breed, flightSpeed, range, lifeSpan);
-		} else if (typeOfBat.equalsIgnoreCase("Hoary")) {
+			batInfo.add(b);
+			break;
+		case 2:
+		
 			b = new HBat(breed, flightSpeed, range, lifeSpan);
-		} else {
+			batInfo.add(b);
+			break;
+		case 3:
 			b = new regularBat(breed, flightSpeed, range, lifeSpan);
+			batInfo.add(b);
+			break;
+		default:
+				System.out.println("Ivalid entry");
+				break;
+				
+			}
+		}catch(InputMismatchException e) {
+			System.out.println("Invaid entry");
+			System.out.println(e);
 		}
-		batInfo.add(b);
-
 	}
 
 	public void removeBat(Scanner kb, List<Bat> batInfo) {
@@ -212,6 +208,7 @@ public class BatsApplication {
 
 		} catch (InputMismatchException e) {
 			System.out.println("Invaild input. Please enter numerical value onle.");
+			System.out.println(e);
 		}
 
 	}
